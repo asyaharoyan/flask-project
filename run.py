@@ -10,12 +10,23 @@ def index():
     """Open the index page"""
     return render_template("index.html")
 
+
 @app.route("/about")
 def about():
     """Open the about page"""
     return render_template("about.html")
 
 
+@app.route("/contact")
+def contact():
+    """Open the contact page"""
+    return render_template("contact.html")
+
+
+@app.route("/carrieers")
+def carrieers():
+    """Open the contact page"""
+    return render_template("carriers.html")
 
 if __name__ == "__main__":
     app.run(
