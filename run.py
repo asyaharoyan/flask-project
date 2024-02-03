@@ -1,5 +1,6 @@
 """Module providing a function printing python version."""
 import os
+import json
 from flask import Flask, render_template
 
 app = Flask(__name__)
@@ -14,19 +15,19 @@ def index():
 @app.route("/about")
 def about():
     """Open the about page"""
-    return render_template("about.html")
+    return render_template("about.html", page_title="About", list_of_numbers=[1, 2, 3])
 
 
 @app.route("/contact")
 def contact():
     """Open the contact page"""
-    return render_template("contact.html")
+    return render_template("contact.html", page_title="Contact")
 
 
 @app.route("/carrieers")
 def carrieers():
     """Open the contact page"""
-    return render_template("carriers.html")
+    return render_template("carriers.html", page_title="Carriers")
 
 if __name__ == "__main__":
     app.run(
