@@ -1,9 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-    {% for number in list_of_numbers %}
-        <p>{{ number }}</p>
-    {% endfor %}
-    <h2>{{ page_title }}</h2>
     <p>
     The formation of the group grew out of a meeting Gandalf had with Thorin in Bree which kindled Thorin's interest in
         recapturing his long lost family inheritance. (Thorin's grandfather had been the King under the Mountain when
@@ -14,38 +10,37 @@
         to leave on other business, welcomed a fourteenth to fill into their party.
     </p>
 
-    <div class="row featurette">
-    <div class="col-md-7">
-        <h3>Thorin Oakenshield</h3>
-        <p>
-            Thorin II was born in TA 2746 to the Dwarf prince Thráin II in the city of the Lonely Mountain. Early in his
-            youth, Thorin and the other Dwarves of the Lonely Mountain were forced to flee by the dragon Smaug, in TA 2770.
-            While in exile, he quickly grew into a capable warrior. This was demonstrated at the Battle of Azanulbizar,
-            near Moria, in TA 2799. He fought with one of the Dwarven armies beneath Moria's East-gate, and at some
-            point in the battle, his shield broke, and, using an oaken tree branch found on the ground as a shield, he
-            gained the epithet "Oakenshield," which remained with him even in death.
-        </p>
-    </div>
-    <div class="col-md-5">
-        <img src="https://static.wikia.nocookie.net/lotr/images/3/3f/ThorinBIG.jpg" alt="">
-    </div>
-    </div>
+    {% for member in company %}
 
-    <div class="row featurette">
-    <div class="col-md-5">
-        <img src="https://static.wikia.nocookie.net/lotr/images/a/a6/HBT-DWF-003.jpg" alt="">
-    </div>
-     <div class="col-md-7">
-        <h3>Fíli and Kíli</h3>
-        <p>
-            Fíli and Kíli were Dwarvern brothers and were also the youngest of the thirteen Dwarves who set out with
-            Thorin Oakenshield's company, along with Gandalf and Bilbo Baggins, to reclaim the Lonely Mountain from
-            the dragon Smaug.
-
-            Fíli and Kíli were the two most active Dwarves of Thorin's company, and, apart from Balin and possibly Bombur,
-            they appear more frequently as "individual" characters in J.R.R. Tolkien's The Hobbit than the rest of
-            Thorin's companions, who are most often named only in group-reference.
-        </p>
-    </div>
-    </div>
+        <div class="row featurette">
+            {% if loop.index % 2 != 0 %}
+                <div class="col-md-7">
+                    <h3><a href="/about/{{ member.url }}"> {{ loop.index }}. {{ member.name }}</a></h3>
+                    <p>
+                        {{ member.description }}
+                    </p>
+                </div>
+                <div class="col-md-5">
+                    <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+                </div>
+            {% else %}
+                <div class="row featurette">
+            {% if loop.index % 2 == 0 %}
+                <div class="col-md-5">
+                    <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+                </div>
+                <div class="col-md-7">
+                    <h3><a href="/about/{{ member.url }}"> {{ loop.index }}. {{ member.name }}</a></h3>
+                    <p>
+                        {{ member.description }}
+                    </p>
+                </div>
+            {% endif %}
+        </div>
+            {% endif %}
+        </div>
+    {% if loop.index != loop.length %}
+        <hr class="featurette-divider">
+    {% endif %}
+    {% endfor %}
 {% endblock %}
