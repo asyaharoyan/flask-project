@@ -57,7 +57,3 @@ if __name__ == "__main__":
         port=int(os.environ.get("PORT", "5000")),
         debug=True)
 
-#click==7.1.2
-# Flask==1.1.2
-# itsdangerous==1.1.0
-# Werkzeug==1.0.1
